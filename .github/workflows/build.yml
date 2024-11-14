@@ -74,36 +74,36 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-    #Coveralls Job
-    coveralls:
-      #Depends on test's job
-      needs: sonar
-      name: Coveralls coverage
-      #Run on Ubuntu using the latest version
-      runs-on: ubuntu-latest
-      #Job's steps
-      steps:
-        #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
-        - uses: actions/checkout@v3
-        #Set up JDK 11
-        - name: Set up JDK
-          uses: actions/setup-java@v3
-          with:
-            java-version: '11'
-            distribution: 'temurin'
-        #Set up Maven cache
-        - name: Cache Maven packages
-          #This action allows caching dependencies and build outputs to improve workflow execution time.
-          uses: actions/cache@v3
-          with:
-            path: ~/.m2
-            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-            restore-keys: ${{ runner.os }}-m2
-        #Run tests and generate coverage report
-        - name: Run tests and generate coverage report
-          run: mvn test jacoco:report
-        #Upload coverage data to Coveralls
-        - name: Upload coverage to Coveralls
-          env:
-            COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-          run: mvn coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN
+  #Coveralls Job
+  coveralls:
+    #Depends on test's job
+    needs: sonar
+    name: Coveralls coverage
+    #Run on Ubuntu using the latest version
+    runs-on: ubuntu-latest
+    #Job's steps
+    steps:
+      #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
+      - uses: actions/checkout@v3
+      #Set up JDK 11
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      #Set up Maven cache
+      - name: Cache Maven packages
+        #This action allows caching dependencies and build outputs to improve workflow execution time.
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      #Run tests and generate coverage report
+      - name: Run tests and generate coverage report
+        run: mvn test jacoco:report
+      #Upload coverage data to Coveralls
+      - name: Upload coverage to Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        run: mvn coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN
