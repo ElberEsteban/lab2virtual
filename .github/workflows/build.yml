@@ -75,7 +75,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
-    # Build's job
+    #Build's job
     build:
       # Depends on sonar's job
       needs: sonar
