@@ -73,3 +73,38 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+    # Build's job
+    build:
+      needs: sonar
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+
+        - name: Set up JDK
+          uses: actions/setup-java@v1
+          with:
+            java-version: '11'
+
+        - name: Cache Maven packages
+          uses: actions/cache@v1
+          with:
+            path: ~/.m2
+            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+            restore-keys: ${{ runner.os }}-m2
+
+        - name: Build with Maven
+          run: mvn -B package -DskipTests --file pom.xml
+
+        - name: Run Tests and Send Coverage to Coveralls
+          run: mvn coveralls:report
+          env:
+            COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
+        - name: Upload JAR
+          uses: actions/upload-artifact@v2
+          with:
+            name: artifact
+            path: target/cicd-0.0.1-SNAPSHOT.jar
