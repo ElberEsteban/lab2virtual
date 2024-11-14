@@ -15,6 +15,9 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<sonar.organization>elberestebanudea</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.projectkey>ElberEsteban_lab2virtual</sonar.projectkey>
 	</properties>
 	<dependencies>
 		<dependency>
