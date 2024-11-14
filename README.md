@@ -10,7 +10,7 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ElberEsteban_lab2virtual&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=ElberEsteban_lab2virtual)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ElberEsteban_lab2virtual&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=ElberEsteban_lab2virtual)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=ElberEsteban_lab2virtual&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=ElberEsteban_lab2virtual)
-
+[![Coverage Status](https://coveralls.io/repos/github/ElberEsteban/lab2virtual/badge.svg?branch=main)](https://coveralls.io/github/ElberEsteban/lab2virtual?branch=main)
 
 Implementation of a Simple App with the next operations:
 
