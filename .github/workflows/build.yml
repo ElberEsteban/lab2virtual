@@ -149,10 +149,10 @@ jobs:
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: estebangonzalezt/lab2virtual
+          image: 891377211478.dkr.ecr.us-east-1.amazonaws.com/laboratorio/lab2virtual
           tags: latest
-          registry: docker.io
+          registry: 891377211478.dkr.ecr.us-east-1.amazonaws.com
           dockerfile: Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: AWS
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
